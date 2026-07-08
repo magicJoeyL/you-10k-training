@@ -299,20 +299,26 @@
   }
   .dl-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.24); }
   .dl-btn svg { width: 16px; height: 16px; }
-  .dl-link {
-    color: rgba(255,255,255,0.85);
+  .dl-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-weight: 600;
     font-size: 13px;
+    padding: 9px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.28);
     text-decoration: none;
-    border-bottom: 1px dashed rgba(255,255,255,0.5);
-    padding-bottom: 1px;
-    transition: color .15s ease;
+    transition: background .15s ease, border-color .15s ease, transform .15s ease;
   }
-  .dl-link:hover { color: #fff; }
+  .dl-btn-ghost:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.45); transform: translateY(-1px); }
 
   /* ── Download by week ── */
   .dl-sec {
     max-width: 960px;
-    margin: 22px auto 0;
+    margin: 28px auto 0;
     padding: 0 16px;
   }
   .dl-sec-title {
@@ -326,39 +332,66 @@
   .dl-sec-sub {
     font-size: 12px;
     color: var(--text-3);
-    margin: 4px 0 14px;
+    margin: 4px 0 18px;
   }
   .dl-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    gap: 12px;
   }
   .dl-chip {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: 12px 14px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 18px 14px 16px;
     background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
+    border: 1.5px solid var(--card-border);
+    border-radius: 12px;
     text-decoration: none;
     color: var(--text);
     transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .dl-chip::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(220,38,38,0.02), transparent 55%);
+    opacity: 0;
+    transition: opacity .2s ease;
   }
   .dl-chip:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.1), 0 4px 10px rgba(220,38,38,0.06);
     border-color: var(--accent);
   }
-  .dl-chip .t { font-size: 14px; font-weight: 700; }
-  .dl-chip .s { font-size: 11px; color: var(--text-3); }
+  .dl-chip:hover::after { opacity: 1; }
+  .dl-chip .icon-wrap {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 9px;
+    background: var(--accent-light);
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: background .2s ease, color .2s ease;
+  }
+  .dl-chip:hover .icon-wrap { background: var(--accent); color: #fff; }
+  .dl-chip .icon-wrap svg { width: 18px; height: 18px; }
+  .dl-chip .t { font-size: 13px; font-weight: 700; text-align: center; }
+  .dl-chip .s { font-size: 11px; color: var(--text-3); text-align: center; line-height: 1.35; }
   .dl-chip.primary {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    border-color: transparent;
     color: #fff;
+    box-shadow: 0 4px 16px rgba(220,38,38,0.25);
   }
-  .dl-chip.primary .s { color: rgba(255,255,255,0.82); }
-  .dl-chip.primary:hover { box-shadow: 0 6px 18px rgba(220,38,38,0.3); }
+  .dl-chip.primary .icon-wrap { background: rgba(255,255,255,0.22); color: #fff; }
+  .dl-chip.primary:hover { box-shadow: 0 10px 30px rgba(220,38,38,0.35); transform: translateY(-3px); }
+  .dl-chip.primary .s { color: rgba(255,255,255,0.78); }
 
   /* ── Section Title ── */
   .sec-title {
@@ -656,7 +689,10 @@
       <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v6.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 8.586V2a1 1 0 011-1zM3 12a1 1 0 011 1v1h8v-1a1 1 0 112 0v2a1 1 0 01-1 1H3a1 1 0 01-1-1v-2a1 1 0 011-1z"/></svg>
       下载完整 Excel 课表
     </a>
-    <a class="dl-link" href="#weekly-download">或按周次单独下载 ↓</a>
+    <a class="dl-btn-ghost" href="#weekly-download">
+      <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8.5 1a.5.5 0 01.5.5v4.793l1.146-1.147a.5.5 0 01.708.708l-2 2a.5.5 0 01-.708 0l-2-2a.5.5 0 11.708-.708L7.5 6.293V1.5a.5.5 0 01.5-.5zM3 9.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm.5 2.5a.5.5 0 000 1h9a.5.5 0 000-1h-9z"/></svg>
+      按周次单独下载
+    </a>
   </div>
 </header>
 
@@ -666,30 +702,39 @@
   <div class="dl-sec-sub">只想要当前这一周？点对应子表单独下载，也可一键拿完整 6 周文件。</div>
   <div class="dl-grid">
     <a class="dl-chip primary" href="./training-plan-10k.xlsx" download="YOU跑团夏训10K专项6周课表.xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v5.293l1.146-1.147a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 7.293V2a1 1 0 011-1zM3 12a1 1 0 011-1h8a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg></span>
       <span class="t">完整课表</span><span class="s">全部 8 个子表</span>
     </a>
     <a class="dl-chip" href="./xlsx/overview.xlsx" download="YOU跑团夏训10K专项_总览.xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2a2 2 0 012-2h5.586a1 1 0 01.707.293l3.414 3.414A1 1 0 0114 5.414V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2zm2-.5v12.5h8V6.207L9.793 2.5H4z"/></svg></span>
       <span class="t">总览</span><span class="s">计划说明</span>
     </a>
     <a class="dl-chip" href="./xlsx/wk1.xlsx" download="YOU跑团夏训10K专项_第1周(W1).xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v5.293l1.146-1.147a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 7.293V2a1 1 0 011-1zM3 12a1 1 0 011-1h8a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg></span>
       <span class="t">第 1 周</span><span class="s">6 月 · W1</span>
     </a>
     <a class="dl-chip" href="./xlsx/wk2.xlsx" download="YOU跑团夏训10K专项_第2周(W2).xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v5.293l1.146-1.147a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 7.293V2a1 1 0 011-1zM3 12a1 1 0 011-1h8a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg></span>
       <span class="t">第 2 周</span><span class="s">6 月 · W2</span>
     </a>
     <a class="dl-chip" href="./xlsx/wk3.xlsx" download="YOU跑团夏训10K专项_第3周(W3).xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v5.293l1.146-1.147a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 7.293V2a1 1 0 011-1zM3 12a1 1 0 011-1h8a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg></span>
       <span class="t">第 3 周</span><span class="s">6 月 · W3</span>
     </a>
     <a class="dl-chip" href="./xlsx/wk4.xlsx" download="YOU跑团夏训10K专项_第4周(W4).xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v5.293l1.146-1.147a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 7.293V2a1 1 0 011-1zM3 12a1 1 0 011-1h8a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg></span>
       <span class="t">第 4 周</span><span class="s">7 月 · W4</span>
     </a>
     <a class="dl-chip" href="./xlsx/wk5.xlsx" download="YOU跑团夏训10K专项_第5周(W5).xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v5.293l1.146-1.147a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 7.293V2a1 1 0 011-1zM3 12a1 1 0 011-1h8a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg></span>
       <span class="t">第 5 周</span><span class="s">7 月 · W5</span>
     </a>
     <a class="dl-chip" href="./xlsx/wk6.xlsx" download="YOU跑团夏训10K专项_第6周(W6).xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v5.293l1.146-1.147a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 7.293V2a1 1 0 011-1zM3 12a1 1 0 011-1h8a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg></span>
       <span class="t">第 6 周</span><span class="s">7 月 · W6 · 含测试赛</span>
     </a>
     <a class="dl-chip" href="./xlsx/pace.xlsx" download="YOU跑团夏训10K专项_配速速查.xlsx">
+      <span class="icon-wrap"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2a2 2 0 012-2h5.586a1 1 0 01.707.293l3.414 3.414A1 1 0 0114 5.414V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2zm2-.5v12.5h8V6.207L9.793 2.5H4z"/><path d="M6.854 7.146a.5.5 0 010 .708l-3 3a.5.5 0 00-.708 0l-1.5-1.5a.5.5 0 11.708-.708L3 10.293l2.646-2.647a.5.5 0 01.708 0zM11 7.5a.5.5 0 01.5.5v4a.5.5 0 01-1 0V8a.5.5 0 01.5-.5z"/></svg></span>
       <span class="t">配速速查</span><span class="s">VDOT 速查表</span>
     </a>
   </div>
