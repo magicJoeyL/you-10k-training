@@ -274,6 +274,31 @@
     letter-spacing: 0.1em;
     margin-top: 2px;
   }
+  .hero-actions {
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 11px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .dl-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.24); }
+  .dl-btn svg { width: 16px; height: 16px; }
 
   /* ── Section Title ── */
   .sec-title {
@@ -565,6 +590,12 @@
     <div class="hero-stat"><div class="hero-stat-v">12-15%</div><div class="hero-stat-l">质量占比</div></div>
     <div class="hero-stat"><div class="hero-stat-v">A-D</div><div class="hero-stat-l">4 组别</div></div>
     <div class="hero-stat"><div class="hero-stat-v">7 / 26</div><div class="hero-stat-l">10K 测试</div></div>
+  </div>
+  <div class="hero-actions">
+    <a class="dl-btn" href="./training-plan-10k.xlsx" download="YOU跑团夏训10K专项6周课表.xlsx">
+      <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v6.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 8.586V2a1 1 0 011-1zM3 12a1 1 0 011 1v1h8v-1a1 1 0 112 0v2a1 1 0 01-1 1H3a1 1 0 01-1-1v-2a1 1 0 011-1z"/></svg>
+      下载 Excel 课表
+    </a>
   </div>
 </header>
 
