@@ -299,6 +299,66 @@
   }
   .dl-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.24); }
   .dl-btn svg { width: 16px; height: 16px; }
+  .dl-link {
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255,255,255,0.5);
+    padding-bottom: 1px;
+    transition: color .15s ease;
+  }
+  .dl-link:hover { color: #fff; }
+
+  /* ── Download by week ── */
+  .dl-sec {
+    max-width: 960px;
+    margin: 22px auto 0;
+    padding: 0 16px;
+  }
+  .dl-sec-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dl-sec-sub {
+    font-size: 12px;
+    color: var(--text-3);
+    margin: 4px 0 14px;
+  }
+  .dl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .dl-chip {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+  .dl-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+  }
+  .dl-chip .t { font-size: 14px; font-weight: 700; }
+  .dl-chip .s { font-size: 11px; color: var(--text-3); }
+  .dl-chip.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .dl-chip.primary .s { color: rgba(255,255,255,0.82); }
+  .dl-chip.primary:hover { box-shadow: 0 6px 18px rgba(220,38,38,0.3); }
 
   /* ── Section Title ── */
   .sec-title {
@@ -594,10 +654,46 @@
   <div class="hero-actions">
     <a class="dl-btn" href="./training-plan-10k.xlsx" download="YOU跑团夏训10K专项6周课表.xlsx">
       <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a1 1 0 011 1v6.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L7 8.586V2a1 1 0 011-1zM3 12a1 1 0 011 1v1h8v-1a1 1 0 112 0v2a1 1 0 01-1 1H3a1 1 0 01-1-1v-2a1 1 0 011-1z"/></svg>
-      下载 Excel 课表
+      下载完整 Excel 课表
     </a>
+    <a class="dl-link" href="#weekly-download">或按周次单独下载 ↓</a>
   </div>
 </header>
+
+<!-- ════════════ DOWNLOAD BY WEEK ════════════ -->
+<section class="dl-sec" id="weekly-download">
+  <div class="dl-sec-title">📥 按周次下载课表</div>
+  <div class="dl-sec-sub">只想要当前这一周？点对应子表单独下载，也可一键拿完整 6 周文件。</div>
+  <div class="dl-grid">
+    <a class="dl-chip primary" href="./training-plan-10k.xlsx" download="YOU跑团夏训10K专项6周课表.xlsx">
+      <span class="t">完整课表</span><span class="s">全部 8 个子表</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/overview.xlsx" download="YOU跑团夏训10K专项_总览.xlsx">
+      <span class="t">总览</span><span class="s">计划说明</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/wk1.xlsx" download="YOU跑团夏训10K专项_第1周(W1).xlsx">
+      <span class="t">第 1 周</span><span class="s">6 月 · W1</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/wk2.xlsx" download="YOU跑团夏训10K专项_第2周(W2).xlsx">
+      <span class="t">第 2 周</span><span class="s">6 月 · W2</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/wk3.xlsx" download="YOU跑团夏训10K专项_第3周(W3).xlsx">
+      <span class="t">第 3 周</span><span class="s">6 月 · W3</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/wk4.xlsx" download="YOU跑团夏训10K专项_第4周(W4).xlsx">
+      <span class="t">第 4 周</span><span class="s">7 月 · W4</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/wk5.xlsx" download="YOU跑团夏训10K专项_第5周(W5).xlsx">
+      <span class="t">第 5 周</span><span class="s">7 月 · W5</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/wk6.xlsx" download="YOU跑团夏训10K专项_第6周(W6).xlsx">
+      <span class="t">第 6 周</span><span class="s">7 月 · W6 · 含测试赛</span>
+    </a>
+    <a class="dl-chip" href="./xlsx/pace.xlsx" download="YOU跑团夏训10K专项_配速速查.xlsx">
+      <span class="t">配速速查</span><span class="s">VDOT 速查表</span>
+    </a>
+  </div>
+</section>
 
 <!-- ════════════ GROUP FILTER ════════════ -->
 <div class="group-filter" id="groupFilter">
